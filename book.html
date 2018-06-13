@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Book</title>
+</head>
+
+<body>
+
+    <div>
+        <label for="author">Author:</label>
+        <input type="text" id="author" name="author">
+    </div>
+    <div>
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title">
+    </div>
+
+    <button type="button" onclick="sendBook()">Add book</button>
+
+
+    <script>
+        function sendBook() {
+
+            var author = document.querySelector('#author').value;
+            var title = document.querySelector('#title').value;
+
+            var object = {
+                author: author,
+                title: title
+            };
+
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("POST", "http://localhost:3000/api/books", true);
+            xhttp.setRequestHeader("Content-type","application/json");  
+
+            xhttp.onreadystatechange = function() {
+                if(xhttp.readyState == 4 && xhttp.status == 200) {
+                    window.location.replace("./index.html")
+                }
+            }
+
+            xhttp.send(JSON.stringify(object));
+        };
+    </script>
+
+</body>
+
+</html>
