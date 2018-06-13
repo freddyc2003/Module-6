@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Books</title>
+</head>
+
+<body>
+
+    <h2>Books:</h2>
+
+    <ul id="list"> </ul>
+    <p>
+        <a href="book.html">Add a book</a>
+    </p>
+
+    <script>
+        function loadBooks() {
+            var list = document.querySelector('#list');
+
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (xhttp.readyState == 4 && xhttp.status == 200) {
+                    var books = JSON.parse(xhttp.responseText);
+                    for (var i = 0; i < books.length; i++) {
+
+                        var book = document.createElement("li");
+
+                        const bookId = books[i].id
+
+                        var txt = books[i].author + ': ' + books[i].title;
+
+                        book.appendChild(document.createTextNode(txt));
+
+                        list.appendChild(book);
+
+                        var removebtn = document.createElement("button"); // use a self-invoking function to be sure the right id is used 
+                        (function(id){
+                            removebtn.onclick = function() {
+
+                            }
+                        });
+                        removebtn.appendChild(document.createTextNode("delete"));
+                        list.appendChild(removebtn);
+
+                        var editBtn = document.createElement("A");
+                        editBtn.appendChild(document.createTextNode("edit"));
+                        editBtn.href = "./editBook.html?id=" + books[i].id + "&title=" + books[i].title + "&author=" + books[i].author
+                        list.appendChild(editBtn); 
+                    }
+                }
+
+            };
+
+            xhttp.open("GET", "http://localhost:3000/api/books", true);
+            xhttp.send();
+
+        }
+
+        loadBooks();
+    </script>
+
+</body>
+
+</html>
