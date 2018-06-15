@@ -5,7 +5,23 @@ As done with in the previous module, add the possibility to edit a book, but use
 
 Hint: you need to create a page that reads the actual book that you need to edit. If you want to pass the id of the book to that page as a GET parameter, you can read the parameter using the following JavaScript:
 
-//this function puts all the GET params into an objectfunction getQueryVariables() {   var query = window.location.search.substring(1);   var object = {};   var vars = query.split('&');   for (var i=0; i<vars.length; i++) {     var pair = vars[i].split('=');     var paramName = pair[0];     var paramValue = pair[1];     object[paramName] = paramValue;   }   return object;}var queryParams = getQueryVariables();//the id will be available here:var bookid = queryParams.id;
+
+function getQueryVariables() {  
+    var query = window.location.search.substring(1);  
+    var object = {};  
+    var vars = query.split('&');  
+    for (var i = 0; i < vars.length; i++) {  
+        var pair = vars[i].split('=');  
+        var paramName = pair[0];  
+        var paramValue = pair[1];  
+        object[paramName] = paramValue;  
+    }  
+    return object;  
+}  
+var queryParams = getQueryVariables();  
+var bookid = queryParams.id;  
+
+
 Hint: you may find an issue when you try to use the date of the book inside the input element. Remember that the date needs to be passed as yyyy-MM-dd.
 
 Hint: on the server side, you can serve PUT requests in express similarly to how you deal with POSTs.
