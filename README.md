@@ -1,8 +1,6 @@
 # Module-6
 Oxford University, Module 6, Assignment 1
 
-Assignment 1
-
 As done with in the previous module, add the possibility to edit a book, but use Ajax instead of a regular HTML form. You will also need to add an update funtcitonality in the server. In REST, usually the "PUT" verb is used.
 
 Hint: you need to create a page that reads the actual book that you need to edit. If you want to pass the id of the book to that page as a GET parameter, you can read the parameter using the following JavaScript:
